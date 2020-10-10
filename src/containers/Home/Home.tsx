@@ -8,6 +8,10 @@ const Home: React.FC = () => {
     history.push("/name_setup");
   };
 
+  const handleCustomRules = () => {
+    history.push("/custom_rules");
+  };
+
   return (
     <div className="columns is-centered">
       <div className="column is-one-third">
@@ -23,7 +27,10 @@ const Home: React.FC = () => {
           </button>
         </div>
         <div>
-          <button className="button is-info is-fullwidth has-text-weight-bold	">
+          <button
+            className="button is-info is-fullwidth has-text-weight-bold"
+            onClick={handleCustomRules}
+          >
             Charge custom rules
           </button>
         </div>

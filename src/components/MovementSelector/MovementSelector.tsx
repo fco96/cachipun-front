@@ -27,7 +27,7 @@ const MovementSelector: React.FC<IProps> = ({ onOk, movements, isVisible }) => {
       </option>
     );
     setOptions([defaultOption, ...newOptions]);
-  }, movements);
+  }, [movements]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(e.target.value);

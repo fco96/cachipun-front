@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as ActionCreators from "../../store/actions/actionCreators";
+import { RootState } from "../../store/reducers";
 
 const styles = require("./NameSetup.module.scss");
 
 const NameSetup: React.FC = () => {
-  const [player1Name, setPlayer1Name] = useState("");
-  const [player2Name, setPlayer2Name] = useState("");
+  const { player1: p1Name, player2: p2Name } = useSelector(
+    (state: RootState) => state.players
+  );
+  const [player1Name, setPlayer1Name] = useState(p1Name);
+  const [player2Name, setPlayer2Name] = useState(p2Name);
 
   const dispatch = useDispatch();
   const history = useHistory();

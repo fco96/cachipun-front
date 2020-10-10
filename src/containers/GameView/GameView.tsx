@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import MovementSelector from "../../components/MovementSelector/MovementSelector";
 import RoundsHistory from "../../components/RoundsHistory/RoundsHistory";
 import { IRoundsHistory } from "../../models/RoundsHistory";
 import { RootState } from "../../store/reducers";
 
-const movements = [
-  { move: "paper", kills: "rock" },
-  { move: "rock", kills: "scissors" },
-  { move: "scissors", kills: "paper" },
-];
-
-const AMOUNT_OF_WINS = 3;
+const AMOUNT_OF_WINS = 1;
 
 const GameView: React.FC = () => {
   const [round, setRound] = useState(1);
@@ -26,19 +21,33 @@ const GameView: React.FC = () => {
     {}
   );
 
+  const history = useHistory();
+
   const { player1: p1Name, player2: p2Name } = useSelector(
     (state: RootState) => state.players
   );
 
+  const { vanillaMoves, customMoves } = useSelector(
+    (state: RootState) => state.moves
+  );
+
+  const movementSelector = useCallback(() => {
+    if (customMoves.length >= 2) {
+      return customMoves;
+    } else {
+      return vanillaMoves;
+    }
+  }, [customMoves, vanillaMoves]);
+
   useEffect(() => {
     const base: { [key: string]: string } = {};
     setMovementHash(
-      movements.reduce(
+      movementSelector().reduce(
         (acc, curr) => ({ ...acc, [curr.move]: curr.kills }),
         base
       )
     );
-  }, []);
+  }, [movementSelector]);
 
   useEffect(() => {
     if (
@@ -93,6 +102,10 @@ const GameView: React.FC = () => {
     setRoundsHistory([]);
   };
 
+  const backToHome = () => {
+    history.push("/");
+  };
+
   return (
     <div>
       <div
@@ -109,12 +122,12 @@ const GameView: React.FC = () => {
               </h2>
               <MovementSelector
                 onOk={okPlayer1}
-                movements={movements}
+                movements={movementSelector()}
                 isVisible={player1IsVisible()}
               />
               <MovementSelector
                 onOk={okPlayer2}
-                movements={movements}
+                movements={movementSelector()}
                 isVisible={!player1IsVisible()}
               />
             </div>
@@ -138,12 +151,22 @@ const GameView: React.FC = () => {
         <div className="column is-narrow has-text-centered">
           <h1 className="title"> We have a winner!</h1>
           <h2 className="subtitle"> {winnerName} </h2>
-          <button
-            className="button is-primary is-fullwidth"
-            onClick={playAgain}
-          >
-            Play again
-          </button>
+          <div>
+            <button
+              className="button is-primary is-fullwidth mb-3 has-text-weight-bold"
+              onClick={playAgain}
+            >
+              Play again
+            </button>
+          </div>
+          <div>
+            <button
+              className="button is-info is-fullwidth has-text-weight-bold"
+              onClick={backToHome}
+            >
+              Return to home
+            </button>
+          </div>
         </div>
       </div>
     </div>
