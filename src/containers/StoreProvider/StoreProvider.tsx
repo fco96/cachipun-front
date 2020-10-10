@@ -2,7 +2,11 @@ import React from "react";
 import { Provider } from "react-redux";
 import store from "../../store";
 
-const StoreProvider: React.FC = ({ children }) => {
+interface IProps {
+  store: typeof store;
+}
+
+const StoreProvider: React.FC<IProps> = ({ children, store }) => {
   return (
     <div>
       <Provider store={store}>{children}</Provider>

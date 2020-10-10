@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as ActionCreators from "../../store/actions/actionCreators";
 
-const styles = require("./Home.module.scss");
+const styles = require("./NameSetup.module.scss");
 
-const Home: React.FC = () => {
+const NameSetup: React.FC = () => {
   const [player1Name, setPlayer1Name] = useState("");
   const [player2Name, setPlayer2Name] = useState("");
 
@@ -21,14 +21,15 @@ const Home: React.FC = () => {
   };
 
   const handleClick = () => {
-    console.log(player1Name, player2Name);
     dispatch(ActionCreators.setPlayers(player1Name, player2Name));
   };
 
   return (
     <div className={"columns is-centered"}>
       <div className={"column is-one-third"}>
-        <div className="columns">
+        <h2 className="subtitle"> Enter player's names</h2>
+
+        <div className="columns is-vcentered">
           <div className="column is-one-third">Player 1</div>
           <div className="column">
             <input
@@ -39,7 +40,7 @@ const Home: React.FC = () => {
             />
           </div>
         </div>
-        <div className="columns">
+        <div className="columns is-vcentered">
           <div className="column is-one-third">Player 2</div>
           <div className="column ">
             <input
@@ -63,4 +64,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default NameSetup;

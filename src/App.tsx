@@ -2,21 +2,22 @@ import React from "react";
 import "bulma";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./containers/home/Home";
 import Layout from "./containers/Layout/Layout";
 import StoreProvider from "./containers/StoreProvider/StoreProvider";
+import store from "./store";
+import NameSetup from "./containers/NameSetup/NameSetup";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Layout>
-          <StoreProvider>
+          <StoreProvider store={store}>
             <Route path="/history">
               <div>Viendo el historial</div>
             </Route>
             <Route exact path="/">
-              <Home />
+              <NameSetup />
             </Route>
           </StoreProvider>
         </Layout>
