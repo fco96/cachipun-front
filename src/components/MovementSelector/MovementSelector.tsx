@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { IMovement } from "../models/Movement";
+import { IMovement } from "../../models/Movement";
+
+const styles = require("./MovementSelector.module.scss");
 
 interface IProps {
   onOk: (x: string) => void;
@@ -37,13 +39,17 @@ const MovementSelector: React.FC<IProps> = ({ onOk, movements, isVisible }) => {
   };
 
   return (
-    <div className={`select ${isVisible ? "" : "is-hidden"}`}>
-      <select value={value} onChange={handleChange}>
+    <div className={`select ${isVisible ? "" : "is-hidden"} is-fullwidth`}>
+      <select
+        value={value}
+        onChange={handleChange}
+        className={`${styles.select}`}
+      >
         {options}
       </select>
 
       <button
-        className="button is-primary"
+        className="button is-primary is-fullwidth"
         onClick={handleOk}
         disabled={value === "default"}
       >
