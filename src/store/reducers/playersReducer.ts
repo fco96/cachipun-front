@@ -7,8 +7,8 @@ interface playersState {
 }
 
 const initialState: playersState = {
-  player1: "",
-  player2: "",
+  player1: "Juan",
+  player2: "Maria",
 };
 
 export function playersReducer(

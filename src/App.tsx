@@ -6,6 +6,7 @@ import Layout from "./containers/Layout/Layout";
 import StoreProvider from "./containers/StoreProvider/StoreProvider";
 import store from "./store";
 import NameSetup from "./containers/NameSetup/NameSetup";
+import GameView from "./containers/GameView/GameView";
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
       <Switch>
         <Layout>
           <StoreProvider store={store}>
-            <Route path="/history">
-              <div>Viendo el historial</div>
+            <Route path="/game">
+              <GameView />
             </Route>
             <Route exact path="/">
               <NameSetup />

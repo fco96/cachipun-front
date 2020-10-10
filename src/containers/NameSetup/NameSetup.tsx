@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as ActionCreators from "../../store/actions/actionCreators";
 
 const styles = require("./NameSetup.module.scss");
@@ -9,6 +10,7 @@ const NameSetup: React.FC = () => {
   const [player2Name, setPlayer2Name] = useState("");
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleValueChange = (setter: Function) => (
     e: React.ChangeEvent<HTMLInputElement>
@@ -22,6 +24,7 @@ const NameSetup: React.FC = () => {
 
   const handleClick = () => {
     dispatch(ActionCreators.setPlayers(player1Name, player2Name));
+    history.push("/game");
   };
 
   return (
