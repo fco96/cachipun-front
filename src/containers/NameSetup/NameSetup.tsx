@@ -56,7 +56,7 @@ const NameSetup: React.FC = () => {
         </div>
 
         <button
-          className={`button is-primary ${styles.startBtn}`}
+          className={`button is-primary has-text-weight-bold ${styles.startBtn}`}
           disabled={!canStart()}
           onClick={handleClick}
         >

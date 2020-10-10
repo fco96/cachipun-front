@@ -49,7 +49,7 @@ const MovementSelector: React.FC<IProps> = ({ onOk, movements, isVisible }) => {
       </select>
 
       <button
-        className="button is-primary is-fullwidth"
+        className="button is-primary is-fullwidth has-text-weight-bold"
         onClick={handleOk}
         disabled={value === "default"}
       >

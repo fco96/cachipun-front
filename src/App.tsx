@@ -7,6 +7,7 @@ import StoreProvider from "./containers/StoreProvider/StoreProvider";
 import store from "./store";
 import NameSetup from "./containers/NameSetup/NameSetup";
 import GameView from "./containers/GameView/GameView";
+import Home from "./containers/Home/Home";
 
 function App() {
   return (
@@ -17,8 +18,11 @@ function App() {
             <Route path="/game">
               <GameView />
             </Route>
-            <Route exact path="/">
+            <Route path="/name_setup">
               <NameSetup />
+            </Route>
+            <Route exact path="/">
+              <Home />
             </Route>
           </StoreProvider>
         </Layout>
