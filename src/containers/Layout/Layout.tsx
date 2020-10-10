@@ -1,9 +1,5 @@
 import React from "react";
 
-interface IProps {
-  children: ChildNode;
-}
-
 const Layout: React.FC = ({ children }) => {
   return (
     <div>

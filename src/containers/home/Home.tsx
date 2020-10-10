@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as ActionCreators from "../../store/actions/actionCreators";
 
 const styles = require("./Home.module.scss");
 
 const Home: React.FC = () => {
   const [player1Name, setPlayer1Name] = useState("");
   const [player2Name, setPlayer2Name] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleValueChange = (setter: Function) => (
     e: React.ChangeEvent<HTMLInputElement>
@@ -18,6 +22,7 @@ const Home: React.FC = () => {
 
   const handleClick = () => {
     console.log(player1Name, player2Name);
+    dispatch(ActionCreators.setPlayers(player1Name, player2Name));
   };
 
   return (

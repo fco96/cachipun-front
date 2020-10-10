@@ -1,0 +1,1 @@
+export const SET_PLAYERS_NAMES = "SET_PLAYERS_NAMES";
