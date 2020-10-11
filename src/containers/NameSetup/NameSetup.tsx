@@ -44,6 +44,7 @@ const NameSetup: React.FC = () => {
               type="text"
               value={player1Name}
               onChange={handleValueChange(setPlayer1Name)}
+              data-testid="player1input"
             />
           </div>
         </div>
@@ -55,6 +56,7 @@ const NameSetup: React.FC = () => {
               type="text"
               value={player2Name}
               onChange={handleValueChange(setPlayer2Name)}
+              data-testid="player2input"
             />
           </div>
         </div>
@@ -63,6 +65,7 @@ const NameSetup: React.FC = () => {
           className={`button is-primary has-text-weight-bold ${styles.startBtn}`}
           disabled={!canStart()}
           onClick={handleClick}
+          data-testid="startBtn"
         >
           Start
         </button>

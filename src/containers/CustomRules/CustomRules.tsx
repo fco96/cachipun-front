@@ -86,6 +86,7 @@ const CustomRules: React.FC = () => {
             placeholder="Input the configuration"
             rows={10}
             onChange={hanldleInputChange}
+            data-testid="inputTextField"
           ></textarea>
         </div>
 
@@ -93,6 +94,7 @@ const CustomRules: React.FC = () => {
           <button
             className="button is-primary is-fullwidth has-text-weight-bold mb-3"
             onClick={handleSave}
+            data-testid="saveBtn"
           >
             Save
           </button>

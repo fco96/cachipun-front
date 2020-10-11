@@ -18,7 +18,7 @@ const GamesHistoryView: React.FC = () => {
   useEffect(() => {
     getHistory().then((resp) => {
       const rows = resp.map((x) => (
-        <tr key={x.id}>
+        <tr key={x.id} data-testid="history-row">
           <th>{x.winner}</th>
           <th>{x.loser}</th>
           <th>{formatDate(x.created_at)}</th>

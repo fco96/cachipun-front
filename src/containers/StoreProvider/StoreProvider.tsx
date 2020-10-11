@@ -7,11 +7,7 @@ interface IProps {
 }
 
 const StoreProvider: React.FC<IProps> = ({ children, store }) => {
-  return (
-    <div>
-      <Provider store={store}>{children}</Provider>
-    </div>
-  );
+  return <Provider store={store}>{children}</Provider>;
 };
 
 export default StoreProvider;
