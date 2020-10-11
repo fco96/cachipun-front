@@ -16,7 +16,7 @@ const MovementSelector: React.FC<IProps> = ({ onOk, movements, isVisible }) => {
   useEffect(() => {
     const newOptions = movements.map(({ move }) => {
       return (
-        <option key={move} value={move}>
+        <option data-testid="selectOption" key={move} value={move}>
           {move}
         </option>
       );

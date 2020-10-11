@@ -12,7 +12,7 @@ const RoundsHistory: React.FC<IProps> = ({ history }) => {
     setTableRows(
       history.map((r, index) => {
         return (
-          <tr key={index}>
+          <tr key={index} data-testid="history-row">
             <th>{r.round}</th>
             <th>{r.winner}</th>
           </tr>

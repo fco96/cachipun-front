@@ -18,7 +18,11 @@ const Notification: React.FC<IProps> = ({
 
   return (
     <div className={`notification ${type} ${isVisible ? "" : "is-hidden"}`}>
-      <button onClick={handleClose} className="delete"></button>
+      <button
+        data-testid="closeBtn"
+        onClick={handleClose}
+        className="delete"
+      ></button>
       {children}
     </div>
   );
