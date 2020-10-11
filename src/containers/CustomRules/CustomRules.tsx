@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { RootState } from "../../store/reducers";
 import * as ActionCreators from "../../store/actions/actionCreators";
+import Notification from "../../components/Notification/Notification";
 
 const CustomRules: React.FC = () => {
   const { vanillaMoves, customMoves } = useSelector(
@@ -10,6 +11,8 @@ const CustomRules: React.FC = () => {
   );
 
   const [currentConfig, setCurrentConfig] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (customMoves.length > 0) {
@@ -33,18 +36,48 @@ const CustomRules: React.FC = () => {
   };
 
   const handleSave = () => {
-    dispatch(ActionCreators.setCustomMovements(JSON.parse(currentConfig)));
+    try {
+      const newConfig = JSON.parse(currentConfig);
+      dispatch(ActionCreators.setCustomMovements(newConfig));
+      setSuccess(true);
+    } catch {
+      setError(true);
+    }
   };
 
   const handleReset = () => {
     dispatch(ActionCreators.setCustomMovements(vanillaMoves));
   };
 
+  const closeErrorCallBack = useCallback(() => {
+    setError(false);
+  }, [setError]);
+
+  const closeSuccessCallBack = useCallback(() => {
+    setSuccess(false);
+  }, [setSuccess]);
+
   return (
     <div className="columns is-centered">
       <div className="column is-8">
         <h1 className="title">Custom rules</h1>
         <h2 className="subtitle"> Please submit the configuration </h2>
+
+        <Notification
+          isVisible={error}
+          type={"is-danger"}
+          closeFn={closeErrorCallBack}
+        >
+          The given configuration is not a valid json configuration!
+        </Notification>
+
+        <Notification
+          isVisible={success}
+          type={"is-link"}
+          closeFn={closeSuccessCallBack}
+        >
+          The new configuration is applied!
+        </Notification>
 
         <div className="mb-5">
           <textarea
