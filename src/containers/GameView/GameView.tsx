@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import MovementSelector from "../../components/MovementSelector/MovementSelector";
 import RoundsHistory from "../../components/RoundsHistory/RoundsHistory";
 import { IRoundsHistory } from "../../models/RoundsHistory";
+import { createHistory } from "../../services/GameHistoryService";
 import { RootState } from "../../store/reducers";
 
-const AMOUNT_OF_WINS = 1;
+const AMOUNT_OF_WINS = 3;
 
 const GameView: React.FC = () => {
   const [round, setRound] = useState(1);
@@ -57,17 +58,25 @@ const GameView: React.FC = () => {
       player2Move !== ""
     ) {
       if (movementHash[player1Move] === player2Move) {
-        if (player1Score + 1 === AMOUNT_OF_WINS) setWinnerName(p1Name);
-        setPlayer1Score(player1Score + 1);
-        setRoundsHistory(
-          roundsHistory.concat({ round: round, winner: p1Name })
-        );
+        if (player1Score + 1 === AMOUNT_OF_WINS) {
+          setWinnerName(p1Name);
+          createHistory(p1Name, p2Name);
+        } else {
+          setPlayer1Score(player1Score + 1);
+          setRoundsHistory(
+            roundsHistory.concat({ round: round, winner: p1Name })
+          );
+        }
       } else if (movementHash[player2Move] === player1Move) {
-        if (player2Score + 1 === AMOUNT_OF_WINS) setWinnerName(p2Name);
-        setPlayer2Score(player2Score + 1);
-        setRoundsHistory(
-          roundsHistory.concat({ round: round, winner: p2Name })
-        );
+        if (player2Score + 1 === AMOUNT_OF_WINS) {
+          setWinnerName(p2Name);
+          createHistory(p2Name, p1Name);
+        } else {
+          setPlayer2Score(player2Score + 1);
+          setRoundsHistory(
+            roundsHistory.concat({ round: round, winner: p2Name })
+          );
+        }
       } else {
         setRoundsHistory(
           roundsHistory.concat({ round: round, winner: "Draw" })

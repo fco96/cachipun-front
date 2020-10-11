@@ -9,6 +9,7 @@ import NameSetup from "./containers/NameSetup/NameSetup";
 import GameView from "./containers/GameView/GameView";
 import Home from "./containers/Home/Home";
 import CustomRules from "./containers/CustomRules/CustomRules";
+import GamesHistoryView from "./containers/GamesHistoryView/GamesHistoryView";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path="/custom_rules">
               <CustomRules />
+            </Route>
+            <Route path="/games_history">
+              <GamesHistoryView />
             </Route>
             <Route exact path="/">
               <Home />

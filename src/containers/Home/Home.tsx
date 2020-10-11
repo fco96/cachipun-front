@@ -12,6 +12,10 @@ const Home: React.FC = () => {
     history.push("/custom_rules");
   };
 
+  const handleGamesHistory = () => {
+    history.push("/games_history");
+  };
+
   return (
     <div className="columns is-centered">
       <div className="column is-one-third">
@@ -20,18 +24,26 @@ const Home: React.FC = () => {
 
         <div className="mb-3">
           <button
-            className="button is-primary is-fullwidth has-text-weight-bold	"
+            className="button is-primary is-fullwidth has-text-weight-bold"
             onClick={handlePlay}
           >
             Play
           </button>
         </div>
-        <div>
+        <div className="mb-3">
           <button
             className="button is-info is-fullwidth has-text-weight-bold"
             onClick={handleCustomRules}
           >
             Charge custom rules
+          </button>
+        </div>
+        <div>
+          <button
+            className="button is-info is-fullwidth has-text-weight-bold"
+            onClick={handleGamesHistory}
+          >
+            View games history
           </button>
         </div>
       </div>
