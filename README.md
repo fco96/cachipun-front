@@ -17,3 +17,10 @@
    npm start
    ```
 3. Open your web browser and paste `http://localhost:3000/` and enjoy :)
+
+## Extra
+
+- You can run the test with
+  ```
+  npm run test
+  ```
