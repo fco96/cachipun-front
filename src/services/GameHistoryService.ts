@@ -1,21 +1,31 @@
 import { IGameHistory } from "./../models/GameHistory";
-import axios from "axios";
 
 const API_URL = "http://localhost:3001";
-const generateRoute = (path: string) => `${API_URL}/${path}`;
 
 export const getHistory = (): Promise<IGameHistory[]> => {
-  return axios.get(generateRoute("game_history")).then(({ data }) => data);
+  return new Promise((resolve, reject) => {
+    try {
+      const history = JSON.parse(localStorage.getItem('game_history') || '[]')
+      resolve(history)
+    } catch (error) {
+      reject(error)
+    }
+  })
 };
 
 export const createHistory = (
   winner: string,
   loser: string
 ): Promise<IGameHistory> => {
-  return axios
-    .post(generateRoute("game_history"), {
-      winner,
-      loser,
-    })
-    .then(({ data }) => data);
+  return new Promise((resolve, reject) => {
+    try {
+      const history: IGameHistory[] = JSON.parse(localStorage.getItem('game_history') || '[]')
+      const newItem = { winner, loser, created_at: new Date().toISOString() }
+      history.push(newItem)
+      localStorage.setItem('game_history', JSON.stringify(history))
+      resolve(newItem)
+    } catch (error) {
+      reject(error)
+    }
+  })
 };

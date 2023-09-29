@@ -39,15 +39,12 @@ const MovementSelector: React.FC<IProps> = ({ onOk, movements, isVisible }) => {
   };
 
   return (
-    <div className={`select ${isVisible ? "" : "is-hidden"} is-fullwidth`}>
-      <select
-        value={value}
-        onChange={handleChange}
-        className={`${styles.select}`}
-      >
-        {options}
-      </select>
-
+    <div className={`${isVisible ? "" : "is-hidden"}`}>
+      <div className={`select is-fullwidth ${styles.select}`}>
+        <select value={value} onChange={handleChange}>
+          {options}
+        </select>
+      </div>
       <button
         className="button is-primary is-fullwidth has-text-weight-bold"
         onClick={handleOk}
